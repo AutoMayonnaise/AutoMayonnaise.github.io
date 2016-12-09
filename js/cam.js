@@ -45,6 +45,9 @@ $(function() {
 			ctx.drawImage(video, 0, 0, w, h);
 			//imgにpng形式で書き出し
 			img.src = canvas.toDataURL('image/png');
+			
+			document.location.href = "http://okame.oridrb.com";
+			
 		}
 	});
 	
