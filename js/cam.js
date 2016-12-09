@@ -46,7 +46,7 @@ $(function() {
 			//imgにpng形式で書き出し
 			img.src = canvas.toDataURL('image/png');
 			
-			document.location.href = "http://okame.oridrb.com";
+			document.location.href = "http://okame.prodrb.com";
 			
 		}
 	});
