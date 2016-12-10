@@ -67,7 +67,7 @@ $(function() {
 		        success: function() {
 		            // 成功時の処理
 		            console.log("susess");
-		            //document.location.href = "recognition.php";
+		            document.location.href = "recognition.php";
 		        },
 		        error(jqXHR, textStatus, errorThrown) {
 		            // 失敗時の処理
