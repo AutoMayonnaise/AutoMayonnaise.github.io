@@ -6,17 +6,14 @@ print<<<EOF
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="css/style.css">
-		<title>Webカメラの映像を画像化</title>
+		<title>画像認識</title>
 	</head>
 	<body>
 		<img id="img" src="example.png">
 EOF;
 
-
-$ch = curl_init();
-
 	// APIキー
-	$api_key = "AIzaSyCyGePNkWsO7eQTvzqLyynV6Gzc4OuA54A";
+	$api_key = "";
 
 	// リファラー (許可するリファラーを設定した場合)
 	//$referer = "https://...com/" ;
