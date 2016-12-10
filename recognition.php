@@ -1,11 +1,28 @@
 <?php
+
+print<<<EOF
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Webカメラの映像を画像化</title>
+	</head>
+	<body>
+		<img id="img" src="example.png">
+EOF;
+
+
+$ch = curl_init();
+
 	// APIキー
-	$api_key = "" ;
+	$api_key = "AIzaSyCyGePNkWsO7eQTvzqLyynV6Gzc4OuA54A";
 
 	// リファラー (許可するリファラーを設定した場合)
 	//$referer = "https://...com/" ;
 
 	// 画像へのパス
+	//パスはexample.pngに変更
 	$image_path = "image/test.jpg" ;
 
 	// リクエスト用のJSONを作成
@@ -24,6 +41,8 @@
 			) ,
 		) ,
 	) ) ;
+
+	echo $json ;
 
 	// リクエストを実行
 	$curl = curl_init() ;
@@ -51,3 +70,12 @@
 	echo "<h2>ヘッダー</h2>" ;
 	echo $header ;
 	
+
+print<<<EOF
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/cam.js"></script>
+	</body>
+	</html>
+EOF;
+	
+?>	
