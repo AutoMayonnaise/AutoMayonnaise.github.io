@@ -1,0 +1,23 @@
+<?php
+
+print<<<EOF
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Webカメラの映像を画像化</title>
+	</head>
+	<body>
+		<h2>Video</h2>
+		<video id="camera" autoplay></video>
+		<button id="start">start</button>
+		<canvas id="canvas" style="display:none"> </canvas>
+		<h2>Img</h2>
+		<img id="img">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/cam.js"></script>
+	</body>
+	</html>
+EOF;
+	

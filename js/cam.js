@@ -45,6 +45,44 @@ $(function() {
 			ctx.drawImage(video, 0, 0, w, h);
 			//imgにpng形式で書き出し
 			img.src = canvas.toDataURL('image/png');
+			
+			
+			// Test
+			
+			// body部パラメーター
+		    var data = {};
+		    // Canvasのデータをbase64でエンコードした文字列を取得
+		   var canvasData = $('canvas').get(0).toDataURL();
+
+		    // 不要な情報を取り除く
+		    canvasData = canvasData.replace(/^data:image\/png;base64,/, '');
+
+		   data.image = canvasData;
+
+		    $.ajax({
+		        url: 'strage.php',
+		        type: 'POST',
+		        data:data,
+		        dataType: 'json',
+		        success: function() {
+		            // 成功時の処理
+		            console.log("susess");
+		            document.location.href = "recognition.php";
+		        },
+		        error(jqXHR, textStatus, errorThrown) {
+		            // 失敗時の処理
+		            console.log("error");
+		            console.log(jqXHR);
+		            console.log(jqXHR.status);
+		            console.log(textStatus);
+		            console.log(errorThrown);
+		        }
+		    });
+			
+			
+			
+			
+			
 		}
 	});
 	
