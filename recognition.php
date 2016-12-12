@@ -13,7 +13,7 @@ print<<<EOF
 EOF;
 
 	// APIキー
-	$api_key = "";
+	$api_key = "AIzaSyCyGePNkWsO7eQTvzqLyynV6Gzc4OuA54A";
 
 	// リファラー (許可するリファラーを設定した場合)
 	//$referer = "https://...com/" ;
