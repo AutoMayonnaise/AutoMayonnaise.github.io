@@ -107,15 +107,13 @@ class mayonnaise{
             switch($character_num[$rand_key]){
                 case 1:
                     //マヨラーの処理（かならずマヨネーズをかける）
-                    //マヨネーズ量計算
-                    $amount_mayo *= $character["ratio"];
                     //すべての料理にマヨネーズをかける処理
                     $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
                     $test = array(
                         'dish_name' => $ans_dish["dish_name"],
                         'character' => $character["name"],
                         'calorie' => $ans_dish,
-                        'mayo' => $amount_mayo,
+                        'mayo' => $character["ratio"],
                         'processing' => '全部にマヨネーズかけるで',
                     );
                     return($test);
@@ -124,14 +122,12 @@ class mayonnaise{
                     //総カロリー判定
                     if($ans_dish["all_calorie"] < $character["border"]){
                         //マヨネーズかける処理
-                        //マヨネーズ量計算
-                        $amount_mayo *= $character["ratio"];
                         //マヨネーズOKの料理のみにマヨネーズをかける処理
                         $test = array(
                             'dish_name' => $ans_dish["dish_name"],
                             'character' => $character["name"],
                             'calorie' => $ans_dish,
-                            'mayo' => $amount_mayo,
+                            'mayo' => $character["ratio"],
                             'processing' => 'マヨOKのやつだけかける',
                         );
                         return($test);
@@ -165,14 +161,13 @@ class mayonnaise{
             //キャラクターをマヨラー（フィーバータイプ）に決定
             //マヨラー（フィーバータイプ）：すべての料理にマヨネーズをかける
             $character = $this->getMayora(1);
-            $amount_mayo *= $character["ratio"];
             //すべての料理にマヨネーズをかける処理
             $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
             $test = array(
                 'dish_name' => $ans_dish["dish_name"],
                 'character' => $character["name"],
                 'calorie' => $ans_dish,
-                'mayo' => $amount_mayo,
+                'mayo' => $character["ratio"],
                 'processing' => '全部にマヨネーズかけたんで',
             );
             return($test);
