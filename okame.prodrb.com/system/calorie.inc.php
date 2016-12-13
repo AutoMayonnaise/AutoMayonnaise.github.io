@@ -11,12 +11,42 @@ class mayonnaise{
             return $name;
         }
     }
+
+    //デモ用
+    //APIから取得した結果からえびせんかチョコか判断
+    public function choose_name($dish){
+        //結果に'food','chocolate'が含まれていればチョコ
+        //結果に'food'しか含まれていなければえびせん
+        //それ以外はerrorを返す
+
+        //初期化
+        $flag = 0;
+
+        foreach($dish as $value){
+            if($value == 'food'){
+                $flag = 1;
+            }
+        }
+
+        if($flag == 1){
+            foreach($dish as $value){
+                if($value == 'chocolate'){
+                    return('チョコレート');
+                }
+            }
+            return('えびせん');
+        }else{
+            return('error');
+        }
+    }
+
     //撮影した料理画像の総カロリーを計算
     public function all_calorie($dish){
         //初期化
         $all_calorie = 0;
         $ans = null;
         $dish_name = null;
+
 
         //料理ごとに辞書からカロリー取得
         foreach($dish as $key => $value){

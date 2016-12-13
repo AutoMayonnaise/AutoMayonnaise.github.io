@@ -7,14 +7,15 @@
 
 		public function getDishName(){
 			// APIキー
-		//	$api_key = "AIzaSyCyGePNkWsO7eQTvzqLyynV6Gzc4OuA54A";
+			$api_key = "AIzaSyCyGePNkWsO7eQTvzqLyynV6Gzc4OuA54A";
 
 			// リファラー (許可するリファラーを設定した場合)
 			//$referer = "https://...com/" ;
 
 			// 画像へのパス
 			//パスはexample.pngに変更
-			$image_path = "http://okame.prodrb.com/assets/img/ebisen.JPG";
+			$image_path = "http://okame.prodrb.com/ajax/example.png";
+//			$image_path = "http://okame.prodrb.com/assets/img/ebisen.JPG";
 
 
 			// リクエスト用のJSONを作成
@@ -33,8 +34,6 @@
 					) ,
 				) ,
 			) ) ;
-
-//			echo $json ;
 
 			// リクエストを実行
 			$curl = curl_init() ;
@@ -55,26 +54,21 @@
 			$json = substr( $res1, $res2["header_size"] ) ;				// 取得したJSON
 			$header = substr( $res1, 0, $res2["header_size"] ) ;		// レスポンスヘッダー
 
-//			// 出力
-//			echo "<h2>JSON</h2>" ;
-//			echo $json ;
-//
-//			echo "<h2>ヘッダー</h2>" ;
-//			echo $header ;
-
 			$ans = array(
-				'json' => $json,
+				'json' => json_decode($json, true),
 				'header' => $header
 			);
 
 			return($ans);
 		}
-	}
 
-//
-//print<<<EOF
-//	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-//	<script type="text/javascript" src="js/cam.js"></script>
-//	</body>
-//	</html>
-//EOF;
+		//APIの結果から必要な部分だけ取得
+		public function resultApi($ans){
+			$name = array();
+			foreach($ans["responses"][0]["labelAnnotations"] as $key=>$value){
+				$name[$key] = $value["description"];
+			}
+
+			return($name);
+		}
+	}
