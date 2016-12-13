@@ -6,7 +6,6 @@ require_once 'db.inc.php';
 class mayonnaise{
     //マヨ判断テスト用のフォーム処理
     public function test(){
-        $result = false;
         if (count($_POST) > 0) {
             $name = explode(",",$_POST['text']);
             return $name;
@@ -34,7 +33,16 @@ class mayonnaise{
                 $mayo[$key] = $info["mayo"];
             }else{
                 //マヨラールートで処理
-                return('error');
+                foreach($dish as $value){
+                    $dish_name .= $value . " ";
+                }
+
+                $ans = array(
+                    'dish_name' => $dish_name,
+                    'all_calorie' => 'error',
+                    'mayo' => 'error'
+                );
+                return($ans);
             }
         }
 
@@ -54,54 +62,86 @@ class mayonnaise{
     //マヨネーズかける処理
     public function decisionMayo($ans_dish){
         //初期化
-        $character_num = array(1,2,3);
+        $character_num = array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3);
         $character = null;
         $amount_mayo = 15;
 
-        if($ans_dish != 'error'){
+        if($ans_dish["all_calorie"] != 'error'){
             //総カロリーの計算が正しくできた場合
             //キャラクターのIDをランダムで決定
             //$rand_key：配列の要素番号が格納される
             $rand_key = array_rand($character_num, 1);
             $character = $this->getCharacter($character_num[$rand_key]);
 
-            //総カロリー判定
-            if($ans_dish["all_calorie"] < $character["border"]){
-                //マヨネーズかける処理
-                //マヨネーズ量計算
-                $amount_mayo *= $character["ratio"];
-                //マヨネーズOKの料理のみにマヨネーズをかける処理
-                $test = array(
-                    'dish_name' => $ans_dish["dish_name"],
-                    'character' => $character["name"],
-                    'calorie' => $ans_dish,
-                    'mayo' => $amount_mayo,
-                    'processing' => 'マヨOKのやつだけかけるで',
-                );
-                return($test);
+            //キャラクターごとに動作分岐
+            switch($character_num[$rand_key]){
+                case 1:
+                    //マヨラーの処理（かならずマヨネーズをかける）
+                    //マヨネーズ量計算
+                    $amount_mayo *= $character["ratio"];
+                    //すべての料理にマヨネーズをかける処理
+                    $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
+                    $test = array(
+                        'dish_name' => $ans_dish["dish_name"],
+                        'character' => $character["name"],
+                        'calorie' => $ans_dish,
+                        'mayo' => $amount_mayo,
+                        'processing' => '全部にマヨネーズかけるで',
+                    );
+                    return($test);
+                case 2:
+                    //健康オタの処理（総カロリー量に合わせてマヨネーズOKの料理にだけマヨネーズをかける）
+                    //総カロリー判定
+                    if($ans_dish["all_calorie"] < $character["border"]){
+                        //マヨネーズかける処理
+                        //マヨネーズ量計算
+                        $amount_mayo *= $character["ratio"];
+                        //マヨネーズOKの料理のみにマヨネーズをかける処理
+                        $test = array(
+                            'dish_name' => $ans_dish["dish_name"],
+                            'character' => $character["name"],
+                            'calorie' => $ans_dish,
+                            'mayo' => $amount_mayo,
+                            'processing' => 'マヨOKのやつだけかける',
+                        );
+                        return($test);
 
-            }elseif($ans_dish["all_calorie"] >= $character["border"]){
-                //マヨネーズをかけない処理
-                $test = array(
-                    'dish_name' => $ans_dish["dish_name"],
-                    'character' => $character["name"],
-                    'calorie' => $ans_dish,
-                    'mayo' => 0,
-                    'processing' => 'マヨかけない',
-                );
-                return($test);
+                    }elseif($ans_dish["all_calorie"] >= $character["border"]){
+                        //マヨネーズをかけない処理
+                        $test = array(
+                            'dish_name' => $ans_dish["dish_name"],
+                            'character' => $character["name"],
+                            'calorie' => $ans_dish,
+                            'mayo' => 0,
+                            'processing' => 'マヨかけない',
+                        );
+                        return($test);
+                    }
+                case 3:
+                    //おかんの処理（かならずマヨネーズかけない）
+                    $test = array(
+                        'dish_name' => $ans_dish["dish_name"],
+                        'character' => $character["name"],
+                        'calorie' => $ans_dish,
+                        'mayo' => 0,
+                        'processing' => 'あんたダイエットするって言ってたやろ！マヨネーズやめとき',
+                    );
+                    return($test);
             }
-        }elseif($ans_dish == 'error'){
+
+
+        }elseif($ans_dish["all_calorie"] == 'error'){
             //総カロリーの計算が正しくできなかった場合
             //キャラクターをマヨラー（フィーバータイプ）に決定
             //マヨラー（フィーバータイプ）：すべての料理にマヨネーズをかける
             $character = $this->getMayora(1);
             $amount_mayo *= $character["ratio"];
             //すべての料理にマヨネーズをかける処理
+            $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
             $test = array(
                 'dish_name' => $ans_dish["dish_name"],
                 'character' => $character["name"],
-                'calorie' => 'カロリーなんて気にすんな！！！！',
+                'calorie' => $ans_dish,
                 'mayo' => $amount_mayo,
                 'processing' => '全部にマヨネーズかけたんで',
             );
