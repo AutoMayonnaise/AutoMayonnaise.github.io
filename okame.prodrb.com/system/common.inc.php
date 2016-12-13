@@ -24,3 +24,6 @@ $db = PDODatabase::getInstance();
 
 //カロリー計算クラス
 require_once 'calorie.inc.php';
+
+//画像処理APIクラス
+require_once 'recognition.inc.php';
