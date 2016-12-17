@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 //error_reporting(E_ALL ^ E_NOTICE);
 ini_set('display_errors','On');
 
-chdir(dirname(__FILE__));
+//chdir(dirname(__FILE__));
 
 //設定読み込み
 require_once 'config.inc.php';

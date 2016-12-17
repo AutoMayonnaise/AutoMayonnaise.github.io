@@ -37,30 +37,30 @@
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.almost-flat.min.css" />
-		<link href="/assets/css/main.css" rel="stylesheet">
+		<link href="/assets/css/style2.css">
 		<link rel="stylesheet" href="/assets/css/style.css">
 
 		{% block head %}
 		{% endblock %}
 
 	</head>
-	<body>
+	<body style="overflow: hidden;">
 		<!-- header -->
 		<div id="header">
-            <div class="uk-width-1-2 uk-container-center">
+            <div>
                 {% include '__header.html' %}
             </div>
 		</div>
 		<!-- main -->
 		<div id="main">
-            <div class="uk-width-1-2 uk-container-center">
+            <div>
                 {% block main %}
                 {% endblock %}
 			</div>
 		</div>
 		<!-- footer -->
 		<div id="footer">
-            <div class="uk-width-1-1">
+            <div>
                 {% include '__footer.html' %}
             </div>
 		</div>
