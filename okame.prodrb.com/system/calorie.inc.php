@@ -92,7 +92,7 @@ class mayonnaise{
     //マヨネーズかける処理
     public function decisionMayo($ans_dish){
         //初期化
-        $character_num = array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3);
+        $character_num = array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3);
         $character = null;
         $amount_mayo = 15;
 
@@ -110,6 +110,7 @@ class mayonnaise{
                     //すべての料理にマヨネーズをかける処理
                     $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
                     $test = array(
+                        'id' => 1,
                         'dish_name' => $ans_dish["dish_name"],
                         'character' => $character["name"],
                         'calorie' => $ans_dish,
@@ -124,6 +125,7 @@ class mayonnaise{
                         //マヨネーズかける処理
                         //マヨネーズOKの料理のみにマヨネーズをかける処理
                         $test = array(
+                            'id' => 2,
                             'dish_name' => $ans_dish["dish_name"],
                             'character' => $character["name"],
                             'calorie' => $ans_dish,
@@ -135,6 +137,7 @@ class mayonnaise{
                     }elseif($ans_dish["all_calorie"] >= $character["border"]){
                         //マヨネーズをかけない処理
                         $test = array(
+                            'id' => 3,
                             'dish_name' => $ans_dish["dish_name"],
                             'character' => $character["name"],
                             'calorie' => $ans_dish,
@@ -146,6 +149,7 @@ class mayonnaise{
                 case 3:
                     //おかんの処理（かならずマヨネーズかけない）
                     $test = array(
+                        'id' => 4,
                         'dish_name' => $ans_dish["dish_name"],
                         'character' => $character["name"],
                         'calorie' => $ans_dish,
@@ -164,6 +168,7 @@ class mayonnaise{
             //すべての料理にマヨネーズをかける処理
             $ans_dish["all_calorie"] = 'カロリーなんて気にすんな！！！！';
             $test = array(
+                'id' => 1,
                 'dish_name' => $ans_dish["dish_name"],
                 'character' => $character["name"],
                 'calorie' => $ans_dish,

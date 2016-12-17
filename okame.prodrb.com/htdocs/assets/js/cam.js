@@ -25,13 +25,21 @@ $(function() {
 		}, onFailSoHard);
 	}
 	
-	
+
 	$("#start").click(function() {
 		if (localMediaStream) {
+
+			// アニメーションを再生
+			$('.roulette').css('display', 'block');
+
+			// アニメ以外の要素を非表示にする
+			//$('.relative').css('display', 'none');
+
+
 			var canvas = document.getElementById('canvas');
 			//canvasの描画モードを2sに
 			var ctx = canvas.getContext('2d');
-			var img = document.getElementById('img');
+			var img = document.getElementById('imgs');
 
 			//videoの縦幅横幅を取得
 			var w = video.offsetWidth;
@@ -63,12 +71,34 @@ $(function() {
 		        url: '/ajax/strage.php',
 		        type: 'POST',
 		        data:data,
-		        dataType: 'json',
+		        dataType: 'text',
 		        success: function(data) {
 		            // 成功時の処理
-		            console.log("susess");
-		            document.location.href = "recognition.php";
+		            decode_data = data.split('~'); // decode_data[1]に結果が文字列で返ってくる
+					result = $.parseJSON(decode_data[1]);
+
+
+					switch(result.id) {
+						case 1:
+							document.location.href = "result_mayo.html";
+							break;
+						case 2:
+							document.location.href = "resultOk_docter.html";
+							break;
+						case 3:
+							document.location.href = "resultNg_docter.html";
+							break;
+						default:
+							document.location.href = "result_mom.html";
+							break;
+					}
+
+		            //document.location.href = "recognition.php";
 					//console.log(data);
+
+					// アニメーションの停止
+					$('.anime').css('display', 'none');
+
 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) {
@@ -78,7 +108,9 @@ $(function() {
 		            console.log(jqXHR.status);
 		            console.log(textStatus);
 		            console.log(errorThrown);
-		        }
+					$('.anime').css('display', 'none');
+
+				}
 		    });
 			
 			
