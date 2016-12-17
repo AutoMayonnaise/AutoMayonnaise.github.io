@@ -27,8 +27,8 @@ body {
 
 .return_btn {
 	position: absolute;
-	left: 20%;
-	bottom: 200px;
+	left: 210px;
+	bottom: 20px;
 }
 
 .video {
@@ -46,7 +46,12 @@ body {
 	margin-top: 10000px
 }
 
-
+#img{
+	position: absolute;
+	top: 290px;
+	left: 200px;
+	width: 300px;
+}
 
 /*　レシピ・カロリーの表示をcssで制御する　*/
 /*
