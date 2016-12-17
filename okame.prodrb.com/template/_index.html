@@ -2,14 +2,33 @@
 
 {% block main %}
 
-<h2>Video</h2>
-<video id="camera" autoplay></video>
-<button id="start">start</button>
+<!--<h2>Video</h2>-->
+<!--<video id="camera" autoplay></video>-->
+<!--<button id="start">start</button>-->
+
+<img class="roulette" src="/assets/img/roulette.gif" style="display: none;"/>
 <canvas id="canvas" style="display:none"> </canvas>
+<!--
 <h2>Img</h2>
-<img id="img">
+-->
+<img id="imgs">
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://okame.prodrb.com/assets/js/cam.js"></script>
+<!--
+<img class="anime" src="http://okame.prodrb.com/assets/img/sample_off.gif" onclick="this.src='http://okame.prodrb.com/assets/img/sample.gif'" alt="">
+-->
+
+<div class="relative">
+    <!--<img class="top" src="/assets/img/top.png" />-->
+    <div class="video top" style="background:url('http://okame.prodrb.com/assets/img/top.png'); height:1100px; text-align: center;">
+        <video id="camera" autoplay style="margin-top: 430px;"></video>
+        <div style="margin-top: 40px;"><button id="start" style="background-color: transparent; border: transparent; overflow: visible; outline: none"><img class="btn" src="/assets/img/photo.png" /></button></div>
+    </div>
+    <!--<a href="process.html"><img class="btn" src="/assets/img/photo.png" /></a>-->
+
+</div>
+
 
 
 <!--<div class="uk-width-7-10 uk-container-center">-->

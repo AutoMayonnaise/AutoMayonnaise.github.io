@@ -28,7 +28,7 @@
 						"features" => array(
 							array(
 								"type" => "LABEL_DETECTION" , //LABEL_DETECTION:カテゴリの検出
-								"maxResults" => 3 , //ポイントの高いものから順に表示
+								"maxResults" => 5 , //ポイントの高いものから順に表示
 							) ,
 						) ,
 					) ,

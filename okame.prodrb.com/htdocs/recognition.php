@@ -7,19 +7,19 @@ $mayonnaise = new mayonnaise();
 
 $dish = array();
 
-//GoogleAPI‚ðŽg‚Á‚Ä—¿—–¼Žæ“¾
+//GoogleAPI
 $ans = $api->getDishName();
 
-//API‚ÌŒ‹‰Ê‚©‚ç•K—v‚È•”•ª‚¾‚¯Žæ“¾
+//APIã®çµæžœã‹ã‚‰å¿…è¦ãªç®‡æ‰€ã ã‘å–å¾—
 $result_api = $api->resultApi($ans["json"]);
 
-//Œ‹‰Ê‚©‚çu‚¦‚Ñ‚¹‚ñvuƒ`ƒ‡ƒRƒŒ[ƒgvuerrorv‚Ì‚Ç‚ê‚©”»’f
+//æ–™ç†åæ±ºå®š
 $dish[] = $mayonnaise->choose_name($result_api);
 
-//ƒJƒƒŠ[ŒvŽZ
+//ç·ã‚«ãƒ­ãƒªãƒ¼è¨ˆç®—
 $ans_dish = $mayonnaise->all_calorie($dish);
 
-//ƒ}ƒˆƒl[ƒY‚©‚¯‚éˆ—
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ±ºå®š
 $test = $mayonnaise->decisionMayo($ans_dish);
 
 
